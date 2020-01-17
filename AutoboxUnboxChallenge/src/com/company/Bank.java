@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Bank {
 
@@ -11,7 +12,7 @@ public class Bank {
 
     //not sure if static
    private static ArrayList<Branch> branchList;
-   public static Branch branch;
+   public  Branch branch;
     public static Customer customer; // not sure about this static variable here, maybe put in branch will see
    public String bankName;
 
@@ -24,7 +25,9 @@ public class Bank {
     //Add new branch to branch list
 
     public void addBranch(String branchName){
-       branchList.add(new Branch(branchName));
+        branch = new Branch(branchName);
+       branchList.add(branch);
+       return;
     }
 
     public void addCustomer(String name, double amt){
@@ -48,9 +51,25 @@ public class Bank {
 
     // print list of customers for a particular branch
    // might have to loop through
+
+    //need to figure out how to get transactions for each customer but first
         public void print(){
-               branch.printCustomerList();
-               customer.printTransactions();
+              // branch.printCustomerList();
+               //customer.printTransactions();
+            System.out.println("customers in branch " + branch.getBranchName() + "are below");
+            for(int i = 0; i < branchList.size(); i++){
+                System.out.println();
+                //System.out.println(Arrays.toString(branchList.get(i).getCustomerList().toArray()));
+                ArrayList<Customer> tempCustlist = branchList.get(i).getCustomerList();
+                for(int j = 0; j < tempCustlist.size(); j++){
+                    System.out.println("Customer " + tempCustlist.get(j).getName());
+                }
+            }
+
         }
+
+
+
+
 
 }
