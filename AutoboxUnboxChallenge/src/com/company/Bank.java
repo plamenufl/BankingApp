@@ -12,7 +12,7 @@ public class Bank {
 
     //not sure if static
    private static ArrayList<Branch> branchList;
-   public  Branch branch;
+   public Branch branch;  //might have to make static so that  we can select which branches
     public static Customer customer; // not sure about this static variable here, maybe put in branch will see
    public String bankName;
 
@@ -32,6 +32,7 @@ public class Bank {
 
     public void addCustomer(String name, double amt){
        if(branch.newCustomer(name, amt)){
+           System.out.println();
            System.out.println("Customer "+ name + " added to " + branch.getBranchName() + " with amount " + amt);
        }else{
            System.out.println("This customer already exists, please add funds through other channel (existing customer");
@@ -52,17 +53,25 @@ public class Bank {
     // print list of customers for a particular branch
    // might have to loop through
 
-    //need to figure out how to get transactions for each customer but first
-        public void print(){
+       //if we choose which branch to print, we don't need to print all branches. Or we can leave this method as a checker to see if everything is added where it is supposed to be
+        public void print(boolean printed){
               // branch.printCustomerList();
                //customer.printTransactions();
-            System.out.println("customers in branch " + branch.getBranchName() + "are below");
+            System.out.println("customers in branches are below");
             for(int i = 0; i < branchList.size(); i++){
                 System.out.println();
+                System.out.println(branchList.get(i).getBranchName());
                 //System.out.println(Arrays.toString(branchList.get(i).getCustomerList().toArray()));
                 ArrayList<Customer> tempCustlist = branchList.get(i).getCustomerList();
                 for(int j = 0; j < tempCustlist.size(); j++){
-                    System.out.println("Customer " + tempCustlist.get(j).getName());
+                    if(printed){
+                        System.out.println("Customer " + tempCustlist.get(j).getName());
+                        ArrayList<Double> transactions = tempCustlist.get(j).getTransaction();
+                        System.out.println(Arrays.toString(transactions.toArray()));
+                    }else{
+                        System.out.println("Customer " + tempCustlist.get(j).getName());
+                    }
+
                 }
             }
 
