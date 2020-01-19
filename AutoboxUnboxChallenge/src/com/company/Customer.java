@@ -7,7 +7,7 @@ public class Customer {
 
     private String name;
     private double amount;
-    private double totalBalance;
+
     private  ArrayList<Double> transaction = new ArrayList<Double>();
 
 
@@ -15,6 +15,7 @@ public class Customer {
         this.name = name;
         this.amount = amount;
         transaction.add(this.amount);
+
     }
 
 
@@ -25,7 +26,7 @@ public class Customer {
     }
 
     public void addFunds(double amount) {
-        addFund(amount);
+     addFund(amount);
     }
 
 //    public Customer(double amount) {
@@ -41,19 +42,20 @@ public class Customer {
         return transaction;
     }
 
-    private double totalBalance(){
 
-        for(int i = 0; i<transaction.size(); i++)
-            totalBalance += transaction.get(i);
+    private double printInfo(){
+
+        double totalBalance = 0.0;
+
+        for(int i =0; i < transaction.size() ;i++){
+           totalBalance += transaction.get(i);
+        }
+
+        //System.out.println(Arrays.toString(transaction.toArray()));
         return totalBalance;
     }
-    private void printInfo(){
-
-        System.out.println(Arrays.toString(transaction.toArray()));
-        System.out.println("The customer's total balance is "+ totalBalance());
-    }
     //might have to do a a static method to print all transactions for all customers
-    public void printTransactions(){
-        printInfo();
+    public double printCustTotalBalance(){
+      return  printInfo();
     }
 }

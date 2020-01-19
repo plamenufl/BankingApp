@@ -57,7 +57,7 @@ public class Branch {
         for(int i = 0; i < this.customerList.size(); i++) {
             String name = this.customerList.get(i).getName();
 
-            if(name.equals(customerName)) {
+            if(name.toUpperCase().equals(customerName.toUpperCase())) {              //compare with toUpperCase but later
                 return this.customerList.get(i);
             }
 
